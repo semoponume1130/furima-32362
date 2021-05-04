@@ -7,40 +7,48 @@
 | name       | string | null: false |
 | email      | string | null: false |
 | password   | string | null: false |
-| profile    | text   | null: false |
-| occupation | text   | null: false |
-| position   | text   | null: false |
-
 
 ### Association
 
-- has_many :comments
-- has_many :prototypes
+- has_many :items
+- has_many :orders
+- has_one  :address
 
-## comments テーブル
+## items テーブル
 
-| Column       | Type       | Options           |
-| ------------ | ---------- | ----------------- |
-| text         | text       | null: false       |
-| user         | references | foreign_key: true |
-| prototype    | references | foreign_key: true |
+| Column            | Type       | Options           |
+| ----------------- | ---------- | ----------------- |
+| item              | string     | null: false       |
+| category          | string     | null: false       |
+| price             | string     | null: false       |
+| seller            | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :prototype
 - belongs_to :user
+- has_one :order
 
-## prototypes テーブル
+## orders テーブル
 
-| Column       | Type       | Options           |
-| ------------ | ---------- | ----------------- |
-| title        | string     | null: false       |
-| catch_copy   | text       | null: false       |
-| concept      | text       | null: false       |
-| user         | references | foreign_key: true |
+| Column        | Type             | Options           |
+| ------------- | ---------------- | ----------------- |
+| buyer         | references       | foreign_key: true |
+| item          | references       | foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
+- has_one :item
+- has_one :address
+
+## addresses テーブル
+
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| address        | string     | null: false       |
+
+### Association
+
+- has_one :user
+- has_one :order
