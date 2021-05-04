@@ -2,11 +2,16 @@
 
 ## users テーブル
 
-| Column     | Type   | Options     |
-| ---------- | ------ | ----------- |
-| name       | string | null: false |
-| email      | string | null: false |
-| password   | string | null: false |
+| Column        | Type   | Options     |
+| ------------- | ------ | ----------- |
+| nickname      | string | null: false |
+| email         | string | null: false |
+| password      | string | null: false |
+| firstname     | string | null: false |
+| lastname      | string | null: false |
+| firstnamekana | string | null: false |
+| lastnamekana  | string | null: false |
+| birthday      | string | null: false |
 
 ### Association
 
@@ -19,9 +24,14 @@
 | Column            | Type       | Options           |
 | ----------------- | ---------- | ----------------- |
 | item              | string     | null: false       |
-| category          | string     | null: false       |
+| description       | text       | null: false       |
 | price             | string     | null: false       |
-| seller            | references | foreign_key: true |
+| condition         | string     | null: false       |
+| shipping          | string     | null: false       |
+| area              | string     | null: false       |
+| day               | string     | null: false       |
+| category          | string     | null: false       |
+| nickname          | references | foreign_key: true |
 
 ### Association
 
@@ -32,9 +42,8 @@
 
 | Column        | Type             | Options           |
 | ------------- | ---------------- | ----------------- |
-| buyer         | references       | foreign_key: true |
+| nickname      | references       | foreign_key: true |
 | item          | references       | foreign_key: true |
-
 
 ### Association
 
@@ -46,9 +55,13 @@
 
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
+| postcode       | string     | null: false       |
+| prefectures    | string     | null: false       |
+| municipalities | string     | null: false       |
 | address        | string     | null: false       |
+| building       | string     | null: true        |
+| phone          | string     | null: false       |
 
 ### Association
 
-- has_one :user
 - has_one :order
