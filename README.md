@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| nickname      | string | null: false |
-| email         | string | null: false |
-| password      | string | null: false |
-| firstname     | string | null: false |
-| lastname      | string | null: false |
-| firstnamekana | string | null: false |
-| lastnamekana  | string | null: false |
-| birthday      | string | null: false |
+| Column             | Type   | Options      |
+| ------------------ | ------ | ------------ |
+| nickname           | string | null: false  |
+| email              | string | unique: true |
+| encrypted_password | string | null: false  |
+| firstname          | string | null: false  |
+| lastname           | string | null: false  |
+| firstname_kana     | string | null: false  |
+| lastname_kana      | string | null: false  |
+| birthday           | date   | null: false  |
 
 ### Association
 
@@ -25,13 +25,13 @@
 | ----------------- | ---------- | ----------------- |
 | item              | string     | null: false       |
 | description       | text       | null: false       |
-| price             | string     | null: false       |
-| condition         | string     | null: false       |
-| shipping          | string     | null: false       |
-| area              | string     | null: false       |
-| day               | string     | null: false       |
-| category          | string     | null: false       |
-| nickname          | references | foreign_key: true |
+| price             | integer    | null: false       |
+| condition_id      | integer    | null: false       |
+| shipping_id       | integer    | null: false       |
+| area_id           | integer    | null: false       |
+| day_id            | integer    | null: false       |
+| category_id       | integer    | null: false       |
+| user              | references | foreign_key: true |
 
 ### Association
 
@@ -42,7 +42,7 @@
 
 | Column        | Type             | Options           |
 | ------------- | ---------------- | ----------------- |
-| nickname      | references       | foreign_key: true |
+| user          | references       | foreign_key: true |
 | item          | references       | foreign_key: true |
 
 ### Association
@@ -56,12 +56,12 @@
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
 | postcode       | string     | null: false       |
-| prefectures    | string     | null: false       |
+| prefectures_id | integer    | null: false       |
 | municipalities | string     | null: false       |
 | address        | string     | null: false       |
-| building       | string     | null: true        |
+| building       | string     |                   |
 | phone          | string     | null: false       |
 
 ### Association
 
-- has_one :order
+- belongs_to :order
