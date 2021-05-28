@@ -4,19 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
-  validates :firstname, presence: true
-  validates :lastname, presence: true
-  validates :firstname_kana, presence: true
-  validates :lastname_kana, presence: true
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :firstname
+    validates :lastname
+    validates :firstname_kana
+    validates :lastname_kana
+    validates :birthday
+  end
 
-  with_options presence: true, format: { with: /\A[ぁ-ゔァ-ヴ\p{Ideographic}ａ-ｚＡ-Ｚ０-９]+\z/, message: 'に全角文字を使用してください' } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'に全角（漢字・ひらがな・カタカナ）文字を使用してください' } do
     validates :firstname
     validates :lastname
   end
 
-  with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は6文字以上かつ英数字をそれぞれ含めてください' } do
+  with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は6文字以上かつ半角英数字をそれぞれ含めてください' } do
     validates :password
   end
 
