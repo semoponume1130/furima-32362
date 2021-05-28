@@ -1,20 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#create' do
     before do
       @user = FactoryBot.build(:user)
     end
 
+  describe 'ユーザー情報の保存' do
     context '保存できる場合' do
       it 'nicknameが必須であること' do
-        @user.nickname = 'aaaaa'
-        expect(@user).to be_valid
       end
   
       it 'emailが必須であること' do
-        @user.email = 'kkk@gmail.com'
-        expect(@user).to be_valid
       end
   
       it 'emailが一意性であること' do
@@ -25,67 +21,36 @@ RSpec.describe User, type: :model do
       end
   
       it 'emailは@を含む必要があること' do
-        @user.email = 'kkk@gmail.com'
-        expect(@user).to be_valid
       end
   
       it 'passwordが必須であること' do
-        @user.password = '12345a'
-        @user.password_confirmation = '12345a'
-        expect(@user).to be_valid
       end
 
       it 'passwordが6文字以上での入力が必須であること' do
-        @user.password = '12345a'
-        @user.password_confirmation = '12345a'
-        expect(@user).to be_valid
       end
   
       it 'passwordは確認用を含めて2回入力すること' do
-        @user.password = '12345a'
-        @user.password_confirmation = '12345a'
-        expect(@user).to be_valid
       end
   
       it 'passwordとpassword_confirmationの値の一致が必須であること' do
-        @user.password = '12345a'
-        @user.password_confirmation = '12345a'
-        expect(@user).to be_valid
       end
   
       it 'ユーザー本名は、名字と名前がそれぞれ必須であること' do
-        @user.firstname = '山田'
-        @user.lastname = '太郎'
-        expect(@user).to be_valid
       end
   
       it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-        @user.firstname = '山田'
-        @user.lastname = 'マイケルたろう'
-        expect(@user).to be_valid
       end
   
       it 'ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること' do
-        @user.firstname_kana = 'ヤマダ'
-        @user.lastname_kana = 'タロウ'
-        expect(@user).to be_valid
       end
   
       it 'ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること' do
-        @user.firstname_kana = 'ヤマダ'
-        @user.lastname_kana = 'タロウ'
-        expect(@user).to be_valid
       end
   
       it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
-        @user.firstname_kana = 'ヤマダ'
-        @user.lastname_kana = 'タロウ'
-        expect(@user).to be_valid
       end
   
       it '生年月日が必須であること' do
-        @user.birthday = '2000-01-01'
-        expect(@user).to be_valid
       end
     end
 
