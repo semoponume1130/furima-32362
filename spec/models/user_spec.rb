@@ -9,7 +9,6 @@ RSpec.describe User, type: :model do
     context '保存できる場合' do
   
       it 'ユーザー情報が正しく保存できること' do
-        @user.save
         expect(@user).to be_valid
       end
   
@@ -71,8 +70,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordは全角英数混合では登録できないこと' do
-      @user.password = '12345６'
-      @user.password_confirmation = '12345６'
+      @user.password = 'aaａ12３'
+      @user.password_confirmation = 'aaａ12３'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password は6文字以上かつ半角英数字をそれぞれ含めてください')
     end
