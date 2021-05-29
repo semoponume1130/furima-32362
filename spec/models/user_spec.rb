@@ -105,12 +105,18 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Firstname can't be blank")
     end
 
-    it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+    it 'firstnameは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.firstname = 'yamada'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Firstname に全角（漢字・ひらがな・カタカナ）文字を使用してください')
+    end
+
+    it 'lastnameは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.lastname = 'tarou'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Firstname に全角（漢字・ひらがな・カタカナ）文字を使用してください', 'Lastname に全角（漢字・ひらがな・カタカナ）文字を使用してください')
+      expect(@user.errors.full_messages).to include('Lastname に全角（漢字・ひらがな・カタカナ）文字を使用してください')
     end
+
 
     it 'ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること' do
       @user.firstname_kana = 'ヤマダ'
