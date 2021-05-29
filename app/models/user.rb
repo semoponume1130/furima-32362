@@ -6,14 +6,10 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :firstname
-    validates :lastname
-    validates :firstname_kana
-    validates :lastname_kana
     validates :birthday
   end
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'に全角（漢字・ひらがな・カタカナ）文字を使用してください' } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'に全角（漢字・ひらがな・カタカナ）文字を使用してください' } do
     validates :firstname
     validates :lastname
   end
