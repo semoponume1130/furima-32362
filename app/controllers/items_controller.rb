@@ -1,6 +1,15 @@
-class ItemsController < ApplicationController
+ class ItemsController < ApplicationController
+# before_action :move_to_index, except: [:index, :show]
 
   def index
   end
-  
-end
+
+#  def new
+# end
+
+# def edit
+# end
+
+# def show
+# end
+end 
