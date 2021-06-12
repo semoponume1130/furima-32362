@@ -9,8 +9,12 @@ class Item < ApplicationRecord
   belongs_to :shipping
   belongs_to :day
 
-  validates :item, :description, presence: true
-  validates :image, presence: true
+  with_options presence: true do
+  validates :item
+  validates :description 
+  validates :image
+  end
+
   validates_inclusion_of :price, in:300..9999999, message: 'は300〜9999999までの範囲で入力してください'
 
 
@@ -18,9 +22,12 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :condition_id, numericality: { other_than: 1 } 
-  validates :area_id, numericality: { other_than: 1 } 
-  validates :shipping_id, numericality: { other_than: 1 } 
-  validates :day_id, numericality: { other_than: 1 } 
+  with_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :condition_id 
+  validates :area_id 
+  validates :shipping_id 
+  validates :day_id
+end
+
 end
