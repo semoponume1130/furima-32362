@@ -60,9 +60,9 @@ RSpec.describe Item, type: :model do
   end
 
   it '発送までの日数についての情報が必須であること' do
-    @item.day_id = ''
+    @item.scheduled_delivery_id = ''
     @item.valid?
-    expect(@item.errors.full_messages).to include("Day is not a number")
+    expect(@item.errors.full_messages).to include("Scheduled delivery is not a number")
   end
 
   it '価格についての情報が必須であること' do
@@ -83,8 +83,26 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include("Price は300〜9999999までの範囲で入力してください")
    end
 
-   it '販売価格は半角数字のみ保存可能であること' do
+   it '販売価格は半角数字のみ保存可能であること(全角数字のみ)' do
     @item.price = '３００'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price は300〜9999999までの範囲で入力してください")
+   end
+
+   it '販売価格は半角数字のみ保存可能であること(全角半角数字混合)' do
+    @item.price = '３00'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price は300〜9999999までの範囲で入力してください")
+   end
+
+   it '販売価格は半角数字のみ保存可能であること(半角英字のみ)' do
+    @item.price = 'three hundred'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price は300〜9999999までの範囲で入力してください")
+   end
+
+   it '販売価格は半角数字のみ保存可能であること(半角英数字混合)' do
+    @item.price = '3 hundred'
     @item.valid?
     expect(@item.errors.full_messages).to include("Price は300〜9999999までの範囲で入力してください")
    end
@@ -114,9 +132,9 @@ RSpec.describe Item, type: :model do
   end
 
   it '発送までの日数についての情報が未選択のidだと出品できないこと' do
-    @item.day_id = 1
+    @item.scheduled_delivery_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Day must be other than 1")
+    expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
   end
 
   end

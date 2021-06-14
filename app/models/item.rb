@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :area
   belongs_to :shipping
-  belongs_to :day
+  belongs_to :scheduled_delivery
 
   with_options presence: true do
   validates :item
@@ -27,7 +27,7 @@ class Item < ApplicationRecord
   validates :condition_id 
   validates :area_id 
   validates :shipping_id 
-  validates :day_id
+  validates :scheduled_delivery_id
 end
 
 end

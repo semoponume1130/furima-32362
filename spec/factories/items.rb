@@ -7,7 +7,7 @@ FactoryBot.define do
     condition_id { 2 }
     shipping_id { 2 }
     area_id { 2 }
-    day_id { 2 }
+    scheduled_delivery_id { 2 }
     category_id { 2 }
 
     after(:build) do |item|
