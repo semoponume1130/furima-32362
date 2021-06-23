@@ -65,10 +65,3 @@
 ### Association
 
 - belongs_to :order
-
-
-https://gyazo.com/6b2f6dbf63a35ef155bb71dfe8fd0caa
-
-https://gyazo.com/84275d9548298f872d3251f4d1479e8f
-
-https://gyazo.com/bbd6635cdad45c6d951c0d2772b1ef82
