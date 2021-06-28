@@ -14,6 +14,16 @@ before_action :authenticate_user!, except: [:index, :show]
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+
+    if item.save
+      redirect_to item_path(item.id)
+    end
   end
 
   def create
@@ -32,3 +42,4 @@ private
     params.require(:item).permit(:image, :item, :description, :price, :condition_id, :shipping_id, :area_id, :scheduled_delivery_id, :category_id ).merge(user_id: current_user.id)
   end
 end
+
